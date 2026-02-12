@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 const projects = [
   {
@@ -102,12 +102,6 @@ const Projects = () => {
                   className="brutalist-border px-4 py-2 font-mono-custom text-xs uppercase tracking-wider hover:bg-foreground hover:text-background transition-colors flex items-center gap-2"
                 >
                   <Github size={14} /> GitHub
-                </a>
-                <a
-                  href="#"
-                  className="brutalist-border px-4 py-2 font-mono-custom text-xs uppercase tracking-wider bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors flex items-center gap-2"
-                >
-                  <ExternalLink size={14} /> Case Study
                 </a>
               </div>
             </motion.div>

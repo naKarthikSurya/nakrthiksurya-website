@@ -10,9 +10,9 @@ const Index = () => {
       <div className="absolute bottom-0 left-0 w-24 h-24 md:w-48 md:h-48 bg-primary opacity-10" />
 
       <div className="container mx-auto px-4 md:px-8 py-12 md:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 gap-8 items-center">
           {/* Main Content */}
-          <div className="lg:col-span-8">
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -72,22 +72,6 @@ const Index = () => {
             </motion.div>
           </div>
 
-          {/* Year Block */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-4 flex items-center justify-center"
-          >
-            <div className="relative">
-              <span className="font-display text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[16rem] text-primary/20 leading-none select-none">
-                2026
-              </span>
-              <div className="absolute bottom-4 right-0 brutalist-border bg-background px-4 py-2">
-                <span className="font-mono-custom text-xs uppercase tracking-widest">Est. Career</span>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
 
