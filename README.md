@@ -1,4 +1,4 @@
-# Karthik Surya | Personal Portfolio & AI Portfolio
+# Karthik Surya | Personal Portfolio
 
 A high-performance, aesthetically driven personal portfolio website for **Karthik Surya**, a Software Engineer and AI Developer specializing in Multi-Agent Systems, RAG, and intelligent automation.
 
