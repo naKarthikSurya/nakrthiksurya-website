@@ -204,25 +204,11 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Honeypot spam trap
-    if (formData.website.trim() || formData._subject_line.trim()) {
-      toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
-      setFormData({ name: "", email: "", message: "", website: "", _subject_line: "" });
-      setCaptchaInput("");
-      return;
-    }
-
-    // Time-based trap (if less than 3 seconds, likely a bot)
-    if (Date.now() - loadTime < 3000) {
-      toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
-      setFormData({ name: "", email: "", message: "", website: "", _subject_line: "" });
-      setCaptchaInput("");
-      return;
-    }
-
     const trimmedName = formData.name.trim();
     const trimmedEmail = formData.email.trim();
     const trimmedMessage = formData.message.trim();
+
+    setErrors({ email: "", message: "", captcha: "" });
 
     if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       toast({ title: "Error", description: "Please fill in all fields.", variant: "destructive" });
@@ -244,8 +230,19 @@ const Contact = () => {
       return;
     }
 
+    // Honeypot spam trap
+    if (formData.website.trim() || formData._subject_line.trim()) {
+      toast({ title: "Please try again.", description: "We couldn't process your request.", variant: "destructive" });
+      return;
+    }
+
+    // Time-based trap (if less than 3 seconds, likely a bot)
+    if (Date.now() - loadTime < 3000) {
+      toast({ title: "Please try again.", description: "We couldn't process your request.", variant: "destructive" });
+      return;
+    }
+
     setLoading(true);
-    setErrors({ email: "", message: "", captcha: "" });
 
     try {
       if (brevoApiKey && brevoToEmail && brevoFromEmail) {
