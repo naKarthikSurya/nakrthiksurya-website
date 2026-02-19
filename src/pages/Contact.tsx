@@ -225,7 +225,7 @@ const Contact = () => {
       return;
     }
 
-    if (parseInt(captchaInput) !== captcha.answer) {
+    if (Number.parseInt(captchaInput.trim(), 10) !== captcha.answer) {
       setErrors(prev => ({ ...prev, captcha: "Incorrect verification answer." }));
       return;
     }
@@ -243,6 +243,13 @@ const Contact = () => {
     setLoading(true);
 
     try {
+      const submission = {
+        ...formData,
+        name: trimmedName,
+        email: trimmedEmail,
+        message: trimmedMessage,
+      };
+
       if (brevoApiKey && brevoToEmail && brevoFromEmail) {
         await sendViaBrevoDirect(trimmedName, trimmedEmail, trimmedMessage);
       } else {
@@ -251,7 +258,7 @@ const Contact = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(submission),
         });
 
         const contentType = response.headers.get("content-type") ?? "";
